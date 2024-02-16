@@ -42,25 +42,24 @@ class AmortizationSchedule extends React.Component {
     const schedule = this.calculateSchedule();
 
     return (
-      <div>
-        <h3>Amortization Schedule</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Payment</th>
-
-              <th>Principal</th>
-
-              <th>Interest</th>
-              
-              <th>Remaining Balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderSchedule(schedule)}
-          </tbody>
-        </table>
+      <div className="amortization-container">
+        <h3>Amortization Schedule</h3> 
+        <div className="schedule-table-container" style={{overflowY: 'auto', maxHeight: '550px'}}> 
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Remaining Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderSchedule(schedule)}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

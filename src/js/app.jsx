@@ -1,7 +1,7 @@
 import React from 'react';
-import MortgageForm from './MortgageForm'; // Make sure this path matches your file structure
-import MortgageResults from './MortgageResults'; // Make sure this path matches your file structure
-import AmortizationSchedule from './AmortizationSchedule'; // Assuming you've created this component
+import MortgageForm from './MortgageForm'; 
+import MortgageResults from './MortgageResults';
+import AmortizationSchedule from './AmortizationSchedule';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -63,12 +63,16 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="app-container">
-        <h3>Mortgage Calculator</h3>
-        <h1>Will I Be House Poor?</h1>
-        <MortgageForm handleChange={this.handleChange} calculateMortgage={this.calculateMortgage} state={this.state} />
-        <MortgageResults {...this.state} />
-        <AmortizationSchedule balance={this.state.balance} rate={this.state.rate} term={this.state.term} />
-        <p>*According to the NFCC, housing should make up less than 30% of a household income. This includes mortgage payments, as well as utilities and any other expenses, such as insurance or HOA fees.</p>
+        <div className="calculator-container">
+          <h3>Mortgage Calculator</h3>
+          <h1>Will I Be House Poor?</h1>
+          <MortgageForm handleChange={this.handleChange} calculateMortgage={this.calculateMortgage} state={this.state} />
+          <MortgageResults {...this.state} />
+          <p>*According to the NFCC, housing should make up less than 30% of a household income. This includes mortgage payments, as well as utilities and any other expenses, such as insurance or HOA fees.</p>
+        </div>
+        <div className="amortization-container">
+          <AmortizationSchedule balance={this.state.balance} rate={this.state.rate} term={this.state.term} />
+        </div>
       </div>
     );
   }
