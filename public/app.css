@@ -6,23 +6,15 @@
   gap: 20px;
 }
 
-.calculator-container {
-  flex: 1;
-  max-width: 600px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #187e9d;
-}
 
-.amortization-container {
+.amortization-container, .calculator-container  {
   flex: 1;
   max-width: 600px;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: 1px solid #901177;
+  border-radius: 50px;
   background-color: #187e9d;
 }
 
@@ -37,17 +29,34 @@
   width: 100%;
   padding: 8px;
   margin: 10px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #901177;
   border-radius: 4px;
 }
 
 .submit-button {
   background-color: #4CAF50;
-  color: white;
+  font-family: 'Faster One' ;
+  color: #901177;
   border: none;
   cursor: pointer;
 }
-
 .margin-bottom-15 {
   margin-bottom: 15px;
+}
+
+h3 {
+  font-family: 'bangers' ;
+  color: #c8f017;
+}
+
+.faster-one-regular, h1 {
+  font-family: "Faster One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  color: #901177;
+}
+.bangers-regular {
+  font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
