@@ -35,7 +35,7 @@ body {
 }
 
 /* Visual cue for draggable area at the bottom of the table */
-.schedule-table-container:after {
+/* .schedule-table-container:after {
   content: 'Drag Me';
   display: block;
   background-color: #fff;
@@ -48,7 +48,7 @@ body {
   left: 0;
   right: 0;
   cursor: grab;
-}
+} */
 
 /* Form elements styling */
 .input-field,

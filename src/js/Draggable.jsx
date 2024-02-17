@@ -1,79 +1,61 @@
 import React, { Component } from 'react';
 
 class Draggable extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isDragging: false,
-      pos: { x: 0, y: 0 },
-      rel: null // Relative position
-    };
-
-    // Binding this to event handlers
-    this.onMouseDown = this.onMouseDown.bind(this);
-    this.onMouseMove = this.onMouseMove.bind(this);
-    this.onMouseUp = this.onMouseUp.bind(this);
-  }
-
-  onMouseDown(e) {
-    // Check if the mouse down event is on the drag handle
-    if (!e.target.matches('.drag-handle') && !e.target.closest('.drag-handle')) return;
-
-    const container = this.containerRef.current;
-    if (!container) return;
-
-    const containerRect = container.getBoundingClientRect();
-    this.setState({
-      isDragging: true,
-      rel: {
-        x: e.pageX - containerRect.left,
-        y: e.pageY - containerRect.top,
+    constructor(props) {
+      super(props);
+      this.state = {
+        dragging: false,
+        offset: { x: 0, y: 0 },
+      };
+      this.startDrag = this.startDrag.bind(this);
+      this.onDrag = this.onDrag.bind(this);
+      this.stopDrag = this.stopDrag.bind(this);
+    }
+  
+    startDrag(e) {
+      if (!e.target.classList.contains('drag-handle')) return;
+      
+      this.setState({
+        dragging: true,
+        offset: {
+          x: e.clientX,
+          y: e.clientY,
+        },
+      });
+      
+      document.addEventListener('mousemove', this.onDrag);
+      document.addEventListener('mouseup', this.stopDrag);
+      e.preventDefault();
+    }
+  
+    onDrag(e) {
+      if (!this.state.dragging) return;
+  
+      const dx = e.clientX - this.state.offset.x;
+      const dy = e.clientY - this.state.offset.y;
+  
+      if (this.node) {
+        this.node.style.transform = `translate(${dx}px, ${dy}px)`;
       }
-    });
-    e.stopPropagation();
-    e.preventDefault();
+    }
+  
+    stopDrag() {
+      this.setState({ dragging: false });
+      document.removeEventListener('mousemove', this.onDrag);
+      document.removeEventListener('mouseup', this.stopDrag);
+    }
+  
+    render() {
+      return (
+        <div
+          ref={node => { this.node = node; }}
+          onMouseDown={this.startDrag}
+          style={{ cursor: 'move' }}
+        >
+          {this.props.children}
+        </div>
+      );
+    }
   }
-
-  onMouseMove(e) {
-    if (!this.state.isDragging) return;
-    this.setState({
-      pos: {
-        x: e.pageX - this.state.rel.x,
-        y: e.pageY - this.state.rel.y
-      }
-    });
-    e.stopPropagation();
-    e.preventDefault();
-  }
-
-  onMouseUp(e) {
-    this.setState({ isDragging: false });
-    e.stopPropagation();
-    e.preventDefault();
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousemove', this.onMouseMove);
-    document.addEventListener('mouseup', this.onMouseUp);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousemove', this.onMouseMove);
-    document.removeEventListener('mouseup', this.onMouseUp);
-  }
-
-  render() {
-    const { x, y } = this.state.pos;
-    return (
-      <div
-      ref={this.containerRef}
-        style={{ position: 'absolute', left: x + 'px', top: y + 'px', cursor: 'move' }}
-        onMouseDown={this.onMouseDown}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
-
-export default Draggable;
+  export default Draggable;
+  
