@@ -1,4 +1,5 @@
 import React from 'react';
+// import Draggable from './Draggable';
 
 class AmortizationSchedule extends React.Component {
   calculateSchedule() {
@@ -42,6 +43,8 @@ class AmortizationSchedule extends React.Component {
     const schedule = this.calculateSchedule();
 
     return (
+      // <div className="draggable-wrapper">
+      // <Draggable>
       <div className="amortization-container">
         <h3>Amortization Schedule</h3> 
         <div className="schedule-table-container" style={{overflowY: 'auto', maxHeight: '550px'}}> 
@@ -61,6 +64,8 @@ class AmortizationSchedule extends React.Component {
           </table>
         </div>
       </div>
+    // </Draggable> 
+    // </div>
     );
   }
 }

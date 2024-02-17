@@ -2,6 +2,7 @@ import React from 'react';
 import MortgageForm from './MortgageForm'; 
 import MortgageResults from './MortgageResults';
 import AmortizationSchedule from './AmortizationSchedule';
+import Draggable from './Draggable';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -62,6 +63,7 @@ export default class App extends React.Component {
 
   render() {
     return (
+      <Draggable>    
       <div className="app-container">
         <div className="calculator-container">
           <h3>Mortgage Calculator</h3>
@@ -74,6 +76,7 @@ export default class App extends React.Component {
           <AmortizationSchedule balance={this.state.balance} rate={this.state.rate} term={this.state.term} />
         </div>
       </div>
+      </Draggable>
     );
   }
 }

@@ -1,11 +1,13 @@
+/* Body background and global styles */
 body {
   background-image: url('./img/jazz.png');
-  background-color: #f4f4f4; /* A light gray that will not compete with the containers */
+  background-color: #f4f4f4; /* Light gray background */
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif; /* Replace with your preferred font */
+  font-family: 'Arial', sans-serif;
 }
 
+/* Flex container for main layout */
 .app-container {
   display: flex;
   flex-wrap: wrap;
@@ -14,6 +16,7 @@ body {
   gap: 20px;
 }
 
+/* Draggable containers */
 .amortization-container, .calculator-container {
   flex: 1;
   max-width: 600px;
@@ -22,13 +25,33 @@ body {
   padding: 20px;
   border-radius: 50px;
   background-color: #187e9d;
+  cursor: grab; /* Cursor indicates draggable area */
 }
 
+/* Scrollable content container */
 .schedule-table-container {
   overflow-y: auto;
-  max-height: 550px; /* Adjust as needed */
+  max-height: 550px;
+  position: relative; /* Position relative for the 'Drag Me' cue */
 }
 
+/* Visual cue for draggable area at the bottom of the table */
+.schedule-table-container:after {
+  content: 'Drag Me';
+  display: block;
+  background-color: #fff;
+  color: #47093b;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  cursor: grab;
+}
+
+/* Form elements styling */
 .input-field,
 .select-field,
 .submit-button {
@@ -39,6 +62,7 @@ body {
   border-radius: 4px;
 }
 
+/* Submit button with gradient and hover effects */
 .submit-button {
   background: linear-gradient(to bottom, #fcfcfc, #d4d4d4);
   color: #333;
@@ -69,36 +93,28 @@ body {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
 }
 
+/* Margin bottom for form elements */
 .margin-bottom-15 {
   margin-bottom: 15px;
 }
 
+/* Styling for headers */
 h3 {
   font-family: 'Bangers', cursive;
   color: #c8f017;
-  background: -webkit-linear-gradient(transparent, transparent),
-              -webkit-linear-gradient(top, rgba(255,255,255,0.5) 0%, transparent 50%);
-  background: -o-linear-gradient(transparent, transparent),
-             -o-linear-gradient(top, rgba(255,255,255,0.5) 0%, transparent 50%);
-  background: -moz-linear-gradient(transparent, transparent),
-              -moz-linear-gradient(top, rgba(255,255,255,0.5) 0%, transparent 50%);
-  background: linear-gradient(transparent, transparent),
-              linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, transparent 50%);
-  -webkit-background-clip: text, border-box;
-  background-clip: text, border-box;
-  -webkit-text-fill-color: tran#901177;
-  text-fill-color: #901177;
+  background: none; /* Remove background gradient */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: initial; /* Use default text fill color */
+  text-fill-color: initial; /* Use default text fill color */
 }
 
+/* Additional styles for text */
 .faster-one-regular, h1 {
   font-family: "Faster One", cursive;
-  font-weight: 400;
-  font-style: normal;
   color: #4f1242;
 }
 
 .bangers-regular {
   font-family: "Bangers", cursive;
-  font-weight: 400;
-  font-style: normal;
 }

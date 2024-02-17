@@ -1,7 +1,10 @@
 import React from 'react';
+// import Draggable from './Draggable';
 
 const MortgageForm = ({ handleChange, calculateMortgage, state }) => {
   return (
+    // <div className="draggable-wrapper">
+    // <Draggable>
     <form onSubmit={calculateMortgage}>
       <div className="margin-bottom-15">
         <input className="input-field" type="number" name="balance" placeholder="Mortgage Balance" value={state.balance} onChange={handleChange} />
@@ -26,6 +29,8 @@ const MortgageForm = ({ handleChange, calculateMortgage, state }) => {
       </div>
       <button className="submit-button" name="submit" type="submit">Calculate</button>
     </form>
+    /* </Draggable>
+    </div> */
   );
 };
 
