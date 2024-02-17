@@ -65,6 +65,7 @@ export default class App extends React.Component {
     return (
       <Draggable>    
       <div className="app-container">
+      <div className="drag-handle">Drag Me</div>
         <div className="calculator-container">
           <h3>Mortgage Calculator</h3>
           <h1>Will I Be House Poor?</h1>

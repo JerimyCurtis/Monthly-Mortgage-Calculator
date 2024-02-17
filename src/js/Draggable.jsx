@@ -16,12 +16,18 @@ class Draggable extends Component {
   }
 
   onMouseDown(e) {
-    if (e.button !== 0) return; // Only left mouse button
+    // Check if the mouse down event is on the drag handle
+    if (!e.target.matches('.drag-handle') && !e.target.closest('.drag-handle')) return;
+
+    const container = this.containerRef.current;
+    if (!container) return;
+
+    const containerRect = container.getBoundingClientRect();
     this.setState({
       isDragging: true,
       rel: {
-        x: e.pageX - this.state.pos.x,
-        y: e.pageY - this.state.pos.y
+        x: e.pageX - containerRect.left,
+        y: e.pageY - containerRect.top,
       }
     });
     e.stopPropagation();
@@ -60,6 +66,7 @@ class Draggable extends Component {
     const { x, y } = this.state.pos;
     return (
       <div
+      ref={this.containerRef}
         style={{ position: 'absolute', left: x + 'px', top: y + 'px', cursor: 'move' }}
         onMouseDown={this.onMouseDown}
       >
