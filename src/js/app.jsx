@@ -42,9 +42,9 @@ export default class App extends React.Component {
 
       const incomeThreshold = parseFloat(monthlyIncome) * 0.3;
       if (totalExpenses > incomeThreshold) {
-        this.setState({ housePoorMessage: "*You're House Poor, Get Another Job!!" });
+        this.setState({ housePoorMessage: "*You're House Poor!" });
       } else {
-        this.setState({ housePoorMessage: '*You can afford to relax some. Keep up the good work!' });
+        this.setState({ housePoorMessage: '*You can afford this!' });
       }
     }
   }
